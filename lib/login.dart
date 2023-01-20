@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class IntroPage extends StatelessWidget {
-  const IntroPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class IntroPage extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 Image.asset("assets/logo.png",
-                width: 250,
-                height: 175,),
+                width:250,
+                height:175),
 
                 const SizedBox(height: 40),
                 Padding(
@@ -27,7 +27,7 @@ class IntroPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Sign up ",style: TextStyle(
+                      Text("Sign in ",style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -37,29 +37,7 @@ class IntroPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
-                Container(
-                  height: 45,
-                  child: TextFormField(
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      hintText: "Name" , hintStyle: TextStyle(color: Colors.green[300]),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  height: 45,
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      hintText: "Age" , hintStyle: TextStyle(color: Colors.green[300]),
-                    ),
-                  ),
-                ),
-               const  SizedBox( height:10),
+                SizedBox(height: 10),
 
                 Container(
                   height: 45,
@@ -85,8 +63,8 @@ class IntroPage extends StatelessWidget {
                 ),
 
                 MaterialButton(
-                  onPressed: () => Navigator.of(context).pushNamed("login"),
-                  child: const Text("Already Have an Account?" ,
+                  onPressed: () => Navigator.of(context).pushNamed("home"),
+                  child: const Text("Don't Have an Account?" ,
                     style: TextStyle(color: Colors.white70 , fontStyle: FontStyle.italic),
                   ),
                 ),

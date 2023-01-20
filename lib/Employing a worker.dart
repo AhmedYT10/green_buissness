@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:list_picker/list_picker.dart';
+final listPickerField = ListPickerField(
+  label: "Gender",
+  items: const ["Male","Female"],
+);
 
-class Find_a_job extends StatelessWidget {
-   Find_a_job({super.key});
+class Employing_a_woker extends StatelessWidget {
+  Employing_a_woker({super.key});
   final formKey = GlobalKey<FormState>();
   final job =TextEditingController();
   final phone =TextEditingController();
   final email =TextEditingController();
-  final adress =TextEditingController();
-  final experience =TextEditingController();
+  final Description_of_worker =TextEditingController();
+  final Gender =TextEditingController();
 
 
   @override
@@ -45,21 +50,21 @@ class Find_a_job extends StatelessWidget {
                 Container(
                   height: 45,
                   child: TextFormField(
-                      controller: job,
-                      keyboardType:TextInputType.text ,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                          labelText:  "Job"
-                      ),
+                    controller: job,
+                    keyboardType:TextInputType.text ,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                        labelText:  "Job"
+                    ),
                     validator: (value){
                       if(value == null){
-                        return "Enter your name";
+                        return "Enter your Job";
                       }else{
                         return null;
                       }
                     },
-                    ),
                   ),
+                ),
 
 
                 const SizedBox(height: 10),
@@ -97,7 +102,7 @@ class Find_a_job extends StatelessWidget {
                     validator: (email) {
                       if(email != null){
                         !EmailValidator.validate(email)
-                        ? "Enter A Valid Email" : null;
+                            ? "Enter A Valid Email" : null;
                       }
                     },
                   ),
@@ -108,15 +113,15 @@ class Find_a_job extends StatelessWidget {
                 Container(
                   height: 45,
                   child: TextFormField(
-                    controller: adress,
+                    controller: Description_of_worker,
                     keyboardType:TextInputType.streetAddress ,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      labelText: "Address",
+                      labelText: "Description of worker",
                     ),
                     validator: (value){
                       if(value == null){
-                        return "Enter your Address";
+                        return "Enter your Description of a worker";
                       }else{
                         return null;
                       }
@@ -124,66 +129,13 @@ class Find_a_job extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 10,),
-
+                const SizedBox(height: 20 ),
                 Container(
-                  height: 45,
-                  child: TextFormField(
-                    controller: experience,
-                    keyboardType:TextInputType.text ,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      labelText: "Experience",
-                    ),
-                    validator: (value){
-                      if(value == null){
-                        return "Enter your Experience";
-                      }else{
-                        return null;
-                      }
-                    },
-                  ),
+                  width: 50,
+                  child: listPickerField
                 ),
 
-                const SizedBox(height: 30),
 
-                MaterialButton(
-                  onPressed: () {},
-                  child: Container(
-                    height: 50.0,
-                    width: 200.0,
-                    decoration: BoxDecoration(
-                      boxShadow: const [BoxShadow(
-                        offset: Offset(0.0 , 20.0),
-                        blurRadius: 30.0,
-                        color: Colors.black12,
-                      )],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(22.0),
-                    ),
-                    child: Row(
-                      children: <Widget> [
-                        Container(
-                          height: 70.0,
-                          width: 160.0,
-                          padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
-                          child: Text("Upload C.V" ,
-                            style: Theme.of(context).textTheme.button!.apply(color: Colors.black),
-                          ),
-                          decoration: const BoxDecoration(
-                            color: Colors.greenAccent,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(95.0),
-                              topLeft: Radius.circular(95.0),
-                              bottomRight: Radius.circular(200.0),
-                            ),
-                          ),
-                        ),
-                        Image.asset("assets/cv.png" , height: 30 , width: 30),
-                      ],
-                    ),
-                  ),
-                ),
 
                 const SizedBox(height: 20),
 
@@ -194,8 +146,10 @@ class Find_a_job extends StatelessWidget {
                       job.clear();
                       email.clear();
                       phone.clear();
-                      adress.clear();
-                      experience.clear();
+                      Description_of_worker.clear();
+                      Gender.clear();
+                      listPickerField.empty;
+
                     };
                   },
                   child: Container(

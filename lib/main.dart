@@ -1,6 +1,11 @@
+import 'package:green_buissness/Employing%20a%20worker.dart';
+import 'package:green_buissness/Services.dart';
+import 'package:green_buissness/buissness_resources.dart';
 import 'package:green_buissness/find_a_ job.dart';
 import 'package:flutter/material.dart';
 import 'package:green_buissness/homepage.dart';
+import 'package:green_buissness/login.dart';
+import 'package:green_buissness/the%20services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +45,13 @@ class MyApp extends StatelessWidget {
 
       routes:
       {
-        'home' : (context) =>  Emplying_a_worker(),
+        'home' : (context) =>  IntroPage(),
+        'login' : (context) => LoginPage(),
+        'Job' : (context) => Find_a_job(),
+        'Start' : (context) => services(),
+        'Services': (context) => our_services(),
+        'Buissness': (context) => apply(),
+        'Worker' : (context) => Employing_a_woker(),
       },
     );
   }
