@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
@@ -189,6 +190,15 @@ class Find_a_job extends StatelessWidget {
 
                 MaterialButton(
                   onPressed: () {
+
+                    Map<String,dynamic> dataBase={
+                      "field1 ":job.text,
+                      "field2 ":email.text,
+                      "field3 ":phone.text,
+                      "field4 ":adress.text,
+                      "field5 ":experience.text,
+                    };
+                    FirebaseFirestore.instance.collection("Find a job").add(dataBase);
                     final isValidForm = formKey.currentState!.validate();
                     if(isValidForm){
                       job.clear();

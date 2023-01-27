@@ -1,14 +1,21 @@
 import 'package:green_buissness/Employing%20a%20worker.dart';
+import 'package:green_buissness/Prepare_a_workplace.dart';
 import 'package:green_buissness/Services.dart';
 import 'package:green_buissness/buissness_resources.dart';
 import 'package:green_buissness/find_a_ job.dart';
 import 'package:flutter/material.dart';
 import 'package:green_buissness/homepage.dart';
 import 'package:green_buissness/login.dart';
-import 'package:green_buissness/the%20services.dart';
+import 'package:green_buissness/the_services.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:green_buissness/tutoria.dart';
 
-void main() {
-  runApp(const MyApp());
+
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -39,7 +46,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: IntroPage(),
+      home: Tutorial(),
 
       //  home: const IntroPage(),
 
@@ -49,9 +56,10 @@ class MyApp extends StatelessWidget {
         'login' : (context) => LoginPage(),
         'Job' : (context) => Find_a_job(),
         'Start' : (context) => services(),
-        'Services': (context) => our_services(),
         'Buissness': (context) => apply(),
-        'Worker' : (context) => Employing_a_woker(),
+        'Worker' : (context) => Employing_a_worker(),
+        'our_services' : (context) => TheServices(),
+        'Prepare' : (context) => prepare(),
       },
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class services extends StatelessWidget {
   const services({Key? key}) : super(key: key);
@@ -16,21 +17,19 @@ class services extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               Image.asset("assets/logo.png"),
 
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
+
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
-                    const SizedBox(height: 30),
-
                     MaterialButton(
-                      onPressed: () => Navigator.of(context).pushNamed("Services"),
+                      onPressed: () => Navigator.of(context).pushNamed("our_services"),
                       child: Container(
                         height: 50.0,
                         width: 200.0,
@@ -49,7 +48,7 @@ class services extends StatelessWidget {
                               height: 70.0,
                               width: 160.0,
                               padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
-                              child: Text("Services" ,
+                              child: Text("Services",
                                 style: Theme.of(context).textTheme.button!.apply(color: Colors.black),
                               ),
                               decoration: const BoxDecoration(
@@ -61,13 +60,11 @@ class services extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Image.asset("assets/home.png" , height: 30, width: 30,),
+                            Image.asset("assets/services.png" , height: 30, width: 30,),
                           ],
                         ),
                       ),
                     ),
-
-
                   ],
                 ),
               ),
@@ -75,6 +72,5 @@ class services extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }}

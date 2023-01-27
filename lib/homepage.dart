@@ -1,7 +1,14 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class IntroPage extends StatelessWidget {
-  const IntroPage({super.key});
+
+  final name = TextEditingController();
+  final age = TextEditingController();
+  final email = TextEditingController();
+  final password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +48,7 @@ class IntroPage extends StatelessWidget {
                 Container(
                   height: 45,
                   child: TextFormField(
+                    controller: name,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -48,10 +56,13 @@ class IntroPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+
+                SizedBox(height: 10),
+
                 Container(
                   height: 45,
                   child: TextFormField(
+                    controller: age,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -64,6 +75,7 @@ class IntroPage extends StatelessWidget {
                 Container(
                   height: 45,
                   child: TextFormField(
+                    controller: email,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                       hintText: "Email" , hintStyle: TextStyle(color: Colors.green[300]),
@@ -76,6 +88,7 @@ class IntroPage extends StatelessWidget {
                 Container(
                   height: 45,
                   child: TextFormField(
+                    controller: password,
                     obscureText: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
@@ -94,7 +107,33 @@ class IntroPage extends StatelessWidget {
                 const SizedBox(height: 30),
 
                 MaterialButton(
-                  onPressed: () => Navigator.of(context).pushNamed("Start"),
+                  onPressed: () async {
+                    Map<String,dynamic> dataBase={
+                      "field1 ":name.text,
+                      "field2 ":age.text,
+                      "field3 ":email.text,
+
+                    };
+                    Navigator.of(context).pushNamed("Start");
+                    FirebaseFirestore.instance.collection("sign up").add(dataBase);
+                    try {
+                      UserCredential userCredential = await  FirebaseAuth.instance.createUserWithEmailAndPassword(
+                          email: email.text,
+                          password: password.text,
+
+                      );
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'weak-password') {
+                        AwesomeDialog(context: context, title: "Error" ,body: Text("Password is weak"),);
+                      } else if (e.code == 'email-already-in-use') {
+                        AwesomeDialog(context: context, title: "Error" ,body: Text("The account already exists for that email."),);
+
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
+
+                  },
                   child: Container(
                     height: 50.0,
                     width: 200.0,
@@ -125,7 +164,7 @@ class IntroPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Image.asset("assets/home.png" , height: 30, width: 30,),
+                        Image.asset("assets/home.png" , height: 30 , width: 30),
                       ],
                     ),
                   ),

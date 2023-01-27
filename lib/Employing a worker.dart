@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:list_picker/list_picker.dart';
@@ -6,14 +7,13 @@ final listPickerField = ListPickerField(
   items: const ["Male","Female"],
 );
 
-class Employing_a_woker extends StatelessWidget {
-  Employing_a_woker({super.key});
+class Employing_a_worker extends StatelessWidget {
+  Employing_a_worker({super.key});
   final formKey = GlobalKey<FormState>();
   final job =TextEditingController();
   final phone =TextEditingController();
   final email =TextEditingController();
   final Description_of_worker =TextEditingController();
-  final Gender =TextEditingController();
 
 
   @override
@@ -141,13 +141,28 @@ class Employing_a_woker extends StatelessWidget {
 
                 MaterialButton(
                   onPressed: () {
+                    Map<String,dynamic> dataBase={
+                      "field1 ":job.text,
+                      "field2 ":email.text,
+                      "field3 ":phone.text,
+                      "field4 ":Description_of_worker.text,
+                      "field5 ":listPickerField.value,
+                    };
+                    FirebaseFirestore.instance.collection("Employ a worker").add(dataBase);
                     final isValidForm = formKey.currentState!.validate();
                     if(isValidForm){
                       job.clear();
                       email.clear();
                       phone.clear();
                       Description_of_worker.clear();
-                      Gender.clear();
+                      listPickerField.empty;
+                    };
+                    final isvalidForm = formKey.currentState!.validate();
+                    if(isvalidForm){
+                      job.clear();
+                      email.clear();
+                      phone.clear();
+                      Description_of_worker.clear();
                       listPickerField.empty;
 
                     };

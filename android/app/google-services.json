@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "302111406368",
+    "project_id": "green-buissness",
+    "storage_bucket": "green-buissness.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302111406368:android:6cc109294ea99c0ff73f45",
+        "android_client_info": {
+          "package_name": "com.example.green_buissness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302111406368-suljia02mt3dfpiut9jaflfilecv9g1u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.green_buissness",
+            "certificate_hash": "a50231cbc2a26f2cb3c083eb64ba2284d1dc40c8"
+          }
+        },
+        {
+          "client_id": "302111406368-4h02sqdmjchpmd4d7l982m845cm05d5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc6IvrYpxmuxdpNm5UQFO8HY4ON5AXFcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302111406368-4h02sqdmjchpmd4d7l982m845cm05d5u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

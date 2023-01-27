@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final email = TextEditingController();
+  final password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,21 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 30),
 
                 MaterialButton(
-                  onPressed: () => Navigator.of(context).pushNamed("Start"),
+                  onPressed: ()async{
+                    Navigator.of(context).pushNamed("Start");
+                    try {
+                      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: email.text,
+                          password: password.text
+                      );
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'user-not-found') {
+                        print('No user found for that email.');
+                      } else if (e.code == 'wrong-password') {
+                        print('Wrong password provided for that user.');
+                      }
+                    }
+                    },
                   child: Container(
                     height: 50.0,
                     width: 200.0,
