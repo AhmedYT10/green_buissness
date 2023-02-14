@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
 
 class Find_a_job extends StatefulWidget {
    Find_a_job({super.key});
@@ -10,7 +9,7 @@ class Find_a_job extends StatefulWidget {
 }
 
 class _Find_a_jobState extends State<Find_a_job> {
-  final formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState>formKey = GlobalKey<FormState>();
 
   final job =TextEditingController();
 
@@ -66,17 +65,17 @@ class _Find_a_jobState extends State<Find_a_job> {
                           labelText:  "Job"
                       ),
                     validator: (value){
-                      if(value == null){
-                        return "Enter your name";
-                      }else{
+                      if(value!.isNotEmpty){
                         return null;
+                      }else{
+                        return "Enter your job";
                       }
                     },
                     ),
                   ),
 
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
 
                 Container(
                   height: 60,
@@ -90,16 +89,16 @@ class _Find_a_jobState extends State<Find_a_job> {
                       labelText: "Tele.No",
                     ),
                     validator: (value){
-                      if(value == null){
-                        return "Enter your Tele.No ";
-                      }else{
+                      if(value!.isNotEmpty){
                         return null;
+                      }else{
+                        return "Enter a phone number";
                       }
                     },
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
 
                 Container(
                   height: 60,
@@ -112,16 +111,10 @@ class _Find_a_jobState extends State<Find_a_job> {
                       fillColor: Colors.grey[300],
                       labelText: "Email",
                     ),
-                    validator: (email) {
-                      if(email != null){
-                        !EmailValidator.validate(email)
-                        ? "Enter A Valid Email" : null;
-                      }
-                    },
                   ),
                 ),
 
-                const SizedBox(height: 10,),
+                const SizedBox(height: 20,),
 
                 Container(
                   height: 60,
@@ -135,16 +128,16 @@ class _Find_a_jobState extends State<Find_a_job> {
                       labelText: "Address",
                     ),
                     validator: (value){
-                      if(value == null){
-                        return "Enter your Address";
-                      }else{
+                      if(value!.isNotEmpty){
                         return null;
+                      }else{
+                        return "Enter your address";
                       }
                     },
                   ),
                 ),
 
-                const SizedBox(height: 10,),
+                const SizedBox(height: 20,),
 
                 Container(
                   height: 60,
@@ -158,10 +151,10 @@ class _Find_a_jobState extends State<Find_a_job> {
                       labelText: "Experience",
                     ),
                     validator: (value){
-                      if(value == null){
-                        return "Enter your Experience";
-                      }else{
+                      if(value!.isNotEmpty){
                         return null;
+                      }else{
+                        return "Enter your experience";
                       }
                     },
                   ),
@@ -210,25 +203,33 @@ class _Find_a_jobState extends State<Find_a_job> {
                 const SizedBox(height: 20),
 
                 MaterialButton(
-                  onPressed: () {setState(() {
+                  onPressed: () {
+                    setState(() {
                     final isValidForm = formKey.currentState!.validate();
                     if(isValidForm){
+                      Map<String,dynamic> dataBase={
+                        "field1 ":job.text,
+                        "field2 ":email.text,
+                        "field3 ":phone.text,
+                        "field4 ":adress.text,
+                        "field5 ":experience.text,
+                      };
+                      FirebaseFirestore.instance.collection("Find a job").add(dataBase);
                       job.clear();
                       email.clear();
                       phone.clear();
                       adress.clear();
                       experience.clear();
+
+                    }else{
+                      return null;
+
+
                     }
                   });
 
-                    Map<String,dynamic> dataBase={
-                      "field1 ":job.text,
-                      "field2 ":email.text,
-                      "field3 ":phone.text,
-                      "field4 ":adress.text,
-                      "field5 ":experience.text,
-                    };
-                    FirebaseFirestore.instance.collection("Find a job").add(dataBase);
+
+
                   },
                   child: Container(
                     height: 60.0,

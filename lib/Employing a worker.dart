@@ -70,10 +70,10 @@ class _Employing_a_workerState extends State<Employing_a_worker> {
                         labelText:  "Job"
                     ),
                     validator: (value){
-                      if(value == null){
-                        return "Enter your Job";
-                      }else{
+                      if(value!.isNotEmpty){
                         return null;
+                      }else{
+                        return "Enter the job";
                       }
                     },
                   ),
@@ -94,10 +94,10 @@ class _Employing_a_workerState extends State<Employing_a_worker> {
                       labelText: "Tele.No",
                     ),
                     validator: (value){
-                      if(value == null){
-                        return "Enter your Tele.No ";
-                      }else{
+                      if(value!.isNotEmpty){
                         return null;
+                      }else{
+                        return "Enter your phone number";
                       }
                     },
                   ),
@@ -117,7 +117,7 @@ class _Employing_a_workerState extends State<Employing_a_worker> {
                       labelText: "Email",
                     ),
                     validator: (email) {
-                      if(email != null){
+                      if(email!.isNotEmpty){
                         !EmailValidator.validate(email)
                             ? "Enter A Valid Email" : null;
                       }
@@ -132,17 +132,17 @@ class _Employing_a_workerState extends State<Employing_a_worker> {
                   width: 350,
                   child: TextFormField(
                     controller: Description_of_worker,
-                    keyboardType:TextInputType.streetAddress ,
+                    keyboardType:TextInputType.text ,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.grey[300],
                       labelText: "Description of worker",
                     ),
                     validator: (value){
-                      if(value == null){
-                        return "Enter your Description of a worker";
-                      }else{
+                      if(value!.isNotEmpty){
                         return null;
+                      }else{
+                        return "Enter description of worker";
                       }
                     },
                   ),
@@ -167,23 +167,14 @@ class _Employing_a_workerState extends State<Employing_a_worker> {
                       "field4 ":Description_of_worker.text,
                       "field5 ":listPickerField.value,
                     };
-                    FirebaseFirestore.instance.collection("Employ a worker").add(dataBase);
                     final isValidForm = formKey.currentState!.validate();
                     if(isValidForm){
+                      FirebaseFirestore.instance.collection("Employ a worker").add(dataBase);
                       job.clear();
                       email.clear();
                       phone.clear();
                       Description_of_worker.clear();
                       listPickerField.empty;
-                    };
-                    final isvalidForm = formKey.currentState!.validate();
-                    if(isvalidForm){
-                      job.clear();
-                      email.clear();
-                      phone.clear();
-                      Description_of_worker.clear();
-                      listPickerField.empty;
-
                     };
                   },
                   child: Container(
