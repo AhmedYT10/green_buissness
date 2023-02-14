@@ -14,252 +14,293 @@ class _applyState extends State<apply> {
   final screens = [
     Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          const SizedBox(height:20),
+      child: SingleChildScrollView(
+        scrollDirection:Axis.vertical ,
 
-          const Text('Money',style:TextStyle(fontWeight: FontWeight.bold,fontSize:20 )),
+        child: Column(
+          children: [
+            const SizedBox(height:20),
 
-          const SizedBox(height: 20),
+            const Text('Money',style:TextStyle(fontWeight: FontWeight.bold,fontSize:28 )),
 
-          Container(
-            width:double.infinity ,
-            height:40 ,
-            child:TextFormField(
-              decoration:InputDecoration(
-                hintText: 'Name',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15)),
+            const SizedBox(height: 20),
+            Image.asset("assets/money.png",height: 175,width: 250,),
+            const SizedBox(height:20),
+
+            Container(
+              width:350 ,
+              height:60 ,
+              child:TextFormField(
+                decoration:InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Name',
+                  labelStyle:TextStyle(fontSize:16,fontWeight: FontWeight.bold ) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15)),
+                ) ,
               ) ,
-            ) ,
-          ),
+            ),
 
-          const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-          Container(
-            width:double.infinity,
-            height:40,
-            child:TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Money',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+            Container(
+              width:350,
+              height:60,
+              child:TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Money',
+                 labelStyle:TextStyle(fontSize: 16,fontWeight: FontWeight.bold) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+                ) ,
               ) ,
-            ) ,
-          ),
+            ),
 
-          const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-          Container(
-            width:double.infinity ,
-            height:80 ,
-            child:TextFormField(
-              minLines: 1,
-              maxLines: 10000,
-              decoration: InputDecoration(
-                hintText: 'Comment',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+            Container(
+              width:350 ,
+              height:60 ,
+              child:TextFormField(
+                minLines: 1,
+                maxLines: 10000,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Comment',
+                  labelStyle:TextStyle(fontSize: 16,fontWeight: FontWeight.bold) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+                ) ,
               ) ,
-            ) ,
-          ),
+            ),
 
-          const SizedBox(height:70),
+            const SizedBox(height:40),
 
-          Container(
-            width:double.infinity ,
-            child: MaterialButton(
-              onPressed: () {
+            Container(
+              width:double.infinity ,
+              child: MaterialButton(
+                onPressed: () {
 
-              },
-              child: Container(
-                height: 50.0,
-                width: 200.0,
-                decoration: BoxDecoration(
-                  boxShadow: const [BoxShadow(
-                    offset: Offset(0.0 , 20.0),
-                    blurRadius: 30.0,
-                    color: Colors.black12,
-                  )],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(22.0),
-                ),
-                child: Row(
-                  children: <Widget> [
-                    Container(
-                      height: 70.0,
-                      width: 160.0,
-                      padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
-                      child: const Text("Send",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(95.0),
-                          topLeft: Radius.circular(95.0),
-                          bottomRight: Radius.circular(200.0),
+                },
+                child: Container(
+                  height: 60.0,
+                  width: 230.0,
+                  decoration: BoxDecoration(
+                    boxShadow: const [BoxShadow(
+                      offset: Offset(0.0 , 20.0),
+                      blurRadius: 30.0,
+                      color: Colors.black12,
+                    )],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(22.0),
+                  ),
+                  child: Row(
+                    children: <Widget> [
+                      Container(
+                        height: 70.0,
+                        width: 190.0,
+                        padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
+                        child: const Text("Send",
+                          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Colors.greenAccent,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(75.0),
+                            topLeft: Radius.circular(75.0),
+                            bottomRight: Radius.circular(200.0),
+                          ),
                         ),
                       ),
-                    ),
-                    Image.asset("assets/send.png" , height: 30, width: 30,),
-                  ],
+                      Image.asset("assets/send.png" , height: 30, width: 30,),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    ),
-
-    Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          const SizedBox(height:20 ,),
-
-          const Text('Place' , style:TextStyle(fontWeight: FontWeight.bold,fontSize:20 )),
-
-          const SizedBox(height: 20,),
-          Container(
-            width:double.infinity ,
-            height:40 ,
-            child:TextFormField(
-              decoration:InputDecoration(
-                hintText: 'Name',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15)),
-              ) ,
-            ) ,
-          ),
-
-          const SizedBox(height: 20),
-
-          Container(
-            width:double.infinity ,
-            height:40 ,
-            child:TextFormField(
-              decoration:InputDecoration(
-                hintText: 'Address',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
-              ) ,
-            ) ,
-          ),
-
-          const SizedBox(height: 20),
-
-          Container(
-            width:double.infinity ,
-            height:80 ,
-            child:TextFormField(
-              minLines: 1,
-              maxLines: 10000,
-              decoration:InputDecoration(
-                hintText: 'Comment',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
-              ) ,
-            ) ,
-          ),
-
-          const SizedBox(height:70 ,),
-
-          Container(
-            width:double.infinity ,
-            child: MaterialButton(
-              onPressed: () {},
-              child: Container(
-                height: 50.0,
-                width: 200.0,
-                decoration: BoxDecoration(
-                  boxShadow: const [BoxShadow(
-                    offset: Offset(0.0 , 20.0),
-                    blurRadius: 30.0,
-                    color: Colors.black12,
-                  )],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(22.0),
-                ),
-                child: Row(
-                  children: <Widget> [
-                    Container(
-                      height: 70.0,
-                      width: 160.0,
-                      padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
-                      child: const Text("Send" ,
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(95.0),
-                          topLeft: Radius.circular(95.0),
-                          bottomRight: Radius.circular(200.0),
-                        ),
-                      ),
-                    ),
-                    Image.asset("assets/send.png" , height: 30, width: 30,),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
     Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          const SizedBox(height:20),
+      child: SingleChildScrollView(
+       scrollDirection:Axis.vertical ,
+        child: Column(
+          children: [
+            const SizedBox(height:20 ,),
 
-          const Text('Idea' , style:TextStyle(fontWeight: FontWeight.bold,fontSize:20 )),
+            const Text('Place' , style:TextStyle(fontWeight: FontWeight.bold,fontSize:20 )),
 
-          const SizedBox(height: 20),
+            const SizedBox(height: 20,),
+            Container(
+              width:350 ,
+              height:60 ,
+              child:TextFormField(
+                decoration:InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Name',
+                  labelStyle:TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize:16
 
-          Container(
-            width:double.infinity ,
-            height:40 ,
-            child:TextFormField(
-              decoration:InputDecoration(
-                hintText: 'Name',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+                  ) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15)),
+                ) ,
               ) ,
-            ) ,
-          ),
+            ),
 
-          const SizedBox(height: 20,),
+            const SizedBox(height: 20),
 
-          Container(
-            width:double.infinity ,
-            height:40 ,
-            child:TextFormField(
-              decoration:InputDecoration(
-                hintText: 'Idea',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+            Container(
+              width:350 ,
+              height:60 ,
+              child:TextFormField(
+                decoration:InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Address',
+                  labelStyle:TextStyle(fontWeight: FontWeight.bold,fontSize: 16) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+                ) ,
               ) ,
-            ) ,
-          ),
+            ),
 
-          const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-          Container(
-            width:double.infinity,
-            height:80,
-            child:TextFormField(
-              minLines: 1,
-              maxLines: 10000,
-              decoration:InputDecoration(
-                hintText: 'Comment',
-                border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+            Container(
+              width:350 ,
+              height:60 ,
+              child:TextFormField(
+                minLines: 1,
+                maxLines: 10000,
+                decoration:InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Comment',
+
+                  labelStyle:TextStyle(fontSize: 16,fontWeight: FontWeight.bold) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+                ) ,
               ) ,
-            ) ,
-          ),
+            ),
 
-          const SizedBox(height: 70),
+            const SizedBox(height:40 ,),
 
-          Container(
-            width:double.infinity ,
-            child: MaterialButton(
+            Container(
+              width:double.infinity ,
+              child: MaterialButton(
+                onPressed: () {},
+                child: Container(
+                  height: 60.0,
+                  width: 230.0,
+                  decoration: BoxDecoration(
+                    boxShadow: const [BoxShadow(
+                      offset: Offset(0.0 , 20.0),
+                      blurRadius: 30.0,
+                      color: Colors.black12,
+                    )],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(22.0),
+                  ),
+                  child: Row(
+                    children: <Widget> [
+                      Container(
+                        height: 70.0,
+                        width: 190.0,
+                        padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
+                        child: const Text("Send" ,
+                          style: TextStyle(color: Colors.black,fontWeight:FontWeight.bold,fontSize: 18 ),
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Colors.greenAccent,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(75.0),
+                            topLeft: Radius.circular(75.0),
+                            bottomRight: Radius.circular(200.0),
+                          ),
+                        ),
+                      ),
+                      Image.asset("assets/send.png" , height: 30, width: 30,),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            const SizedBox(height:20),
+
+            const Text('Idea' , style:TextStyle(fontWeight: FontWeight.bold,fontSize:20 )),
+
+            const SizedBox(height: 20),
+            Image.asset("assets/idea.png",height: 175,width: 250,),
+            const SizedBox(height:20),
+            Container(
+              width:350 ,
+              height:60 ,
+              child:TextFormField(
+                decoration:InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Name',
+                  labelStyle:TextStyle(fontSize:16,fontWeight:FontWeight.bold  ) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+                ) ,
+              ) ,
+            ),
+
+            const SizedBox(height: 20,),
+
+            Container(
+              width:350 ,
+              height:60 ,
+              child:TextFormField(
+                decoration:InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Idea',
+                  labelStyle:TextStyle(fontSize: 16,fontWeight: FontWeight.bold) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+                ) ,
+              ) ,
+            ),
+
+            const SizedBox(height: 20),
+
+            Container(
+              width:350 ,
+              height:60 ,
+              child:TextFormField(
+                minLines: 1,
+                maxLines: 10000,
+                decoration:InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[300],
+                  labelText: 'Comment',
+                  labelStyle:TextStyle(fontWeight: FontWeight.bold,fontSize:16 ) ,
+                  border:OutlineInputBorder(borderRadius:BorderRadius.circular(15), ),
+                ) ,
+              ) ,
+            ),
+
+            const SizedBox(height: 40),
+
+            MaterialButton(
               onPressed: () {},
               child: Container(
-                height: 50.0,
-                width: 200.0,
+                height: 60.0,
+                width: 230.0,
                 decoration: BoxDecoration(
                   boxShadow: const [BoxShadow(
                     offset: Offset(0.0 , 20.0),
@@ -273,16 +314,16 @@ class _applyState extends State<apply> {
                   children: <Widget> [
                     Container(
                       height: 70.0,
-                      width: 160.0,
+                      width: 190.0,
                       padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
                       child: const Text("Send",
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold,),
                       ),
                       decoration: const BoxDecoration(
                         color: Colors.greenAccent,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(95.0),
-                          topLeft: Radius.circular(95.0),
+                          bottomLeft: Radius.circular(75.0),
+                          topLeft: Radius.circular(75.0),
                           bottomRight: Radius.circular(200.0),
                         ),
                       ),
@@ -292,8 +333,8 @@ class _applyState extends State<apply> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   ];
@@ -301,9 +342,11 @@ class _applyState extends State<apply> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.white,
 
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.grey,
+      ),
 
       body: screens[currentindex],
 

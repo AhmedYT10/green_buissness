@@ -202,8 +202,10 @@ class _prepareState extends State<prepare> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
-      appBar: AppBar(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.grey,
+      ),
 
       body:screens[currentindex],
 

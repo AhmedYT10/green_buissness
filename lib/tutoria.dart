@@ -49,10 +49,11 @@ class _TutorialState extends State<Tutorial> {
               children: [
 
                 //skip
-                GestureDetector(
-                  onTap: () {
+                MaterialButton(
+                  onPressed: () {
                     _controller.jumpToPage(2);
                   },
+                  color: Colors.purple,
                   child: const Text(
                     "Skip",
                     style: TextStyle(
@@ -68,13 +69,14 @@ class _TutorialState extends State<Tutorial> {
 
                 //next or done
                 onLastPage
-                    ? GestureDetector(
-                  onTap: () {
+                    ? MaterialButton(
+                  onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                           return IntroPage();
                         }));
                   },
+                  color: Colors.purple,
                   child: const Text(
                     "Done",
                     style: TextStyle(
@@ -84,13 +86,14 @@ class _TutorialState extends State<Tutorial> {
                     ),
                   ),
                 )
-                    : GestureDetector(
-                  onTap: () {
+                    : MaterialButton(
+                  onPressed: () {
                     _controller.nextPage(
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.easeIn,
                     );
                   },
+                  color: Colors.purple,
                   child: const Text(
                     "Next",
                     style: TextStyle(

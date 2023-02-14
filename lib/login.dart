@@ -1,14 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final email = TextEditingController();
+
   final password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.white,
 
       body: SingleChildScrollView(
         child: Center(
@@ -30,7 +36,7 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text("Sign in ",style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
 
@@ -42,11 +48,14 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 10),
 
                 Container(
-                  height: 45,
+                  width: 350,
+                  height: 60,
                   child: TextFormField(
                     decoration: InputDecoration(
+                        filled: true,
+                      fillColor: Colors.grey[300],
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      hintText: "Email" , hintStyle: TextStyle(color: Colors.green[300]),
+                      labelText: "Email" , labelStyle: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
@@ -54,12 +63,15 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 Container(
-                  height: 45,
+                  width: 350,
+                  height: 60,
                   child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      hintText: "Password" , hintStyle: TextStyle(color: Colors.green[300]),
+                      hintText: "Password" , hintStyle: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
@@ -67,7 +79,7 @@ class LoginPage extends StatelessWidget {
                 MaterialButton(
                   onPressed: () => Navigator.of(context).pushNamed("home"),
                   child: const Text("Don't Have an Account?" ,
-                    style: TextStyle(color: Colors.white70 , fontStyle: FontStyle.italic),
+                    style: TextStyle(color: Colors.black , fontStyle: FontStyle.italic),
                   ),
                 ),
 
@@ -90,8 +102,8 @@ class LoginPage extends StatelessWidget {
                     }
                     },
                   child: Container(
-                    height: 50.0,
-                    width: 200.0,
+                    height: 60.0,
+                    width: 230.0,
                     decoration: BoxDecoration(
                       boxShadow: const [BoxShadow(
                         offset: Offset(0.0 , 20.0),
@@ -105,16 +117,16 @@ class LoginPage extends StatelessWidget {
                       children: <Widget> [
                         Container(
                           height: 70.0,
-                          width: 160.0,
+                          width: 190.0,
                           padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
                           child: Text("Get Started" ,
-                            style: Theme.of(context).textTheme.button!.apply(color: Colors.black),
+                            style: Theme.of(context).textTheme.button!.copyWith(color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),
                           ),
                           decoration: const BoxDecoration(
                             color: Colors.greenAccent,
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(95.0),
-                              topLeft: Radius.circular(95.0),
+                              bottomLeft: Radius.circular(75.0),
+                              topLeft: Radius.circular(75.0),
                               bottomRight: Radius.circular(200.0),
                             ),
                           ),

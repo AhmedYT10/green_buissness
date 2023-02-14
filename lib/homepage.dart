@@ -13,7 +13,7 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.white,
 
       body: SingleChildScrollView(
         child: Center(
@@ -35,7 +35,7 @@ class IntroPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text("Sign up ",style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
 
@@ -46,13 +46,16 @@ class IntroPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  height: 45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
                     controller: name,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      hintText: "Name" , hintStyle: TextStyle(color: Colors.green[300]),
+                      labelText: "Name" , labelStyle: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
@@ -60,25 +63,32 @@ class IntroPage extends StatelessWidget {
                 SizedBox(height: 10),
 
                 Container(
-                  height: 45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
+
                     controller: age,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      hintText: "Age" , hintStyle: TextStyle(color: Colors.green[300]),
+                      labelText: "Age" , labelStyle: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
                const  SizedBox( height:10),
 
                 Container(
-                  height: 45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
                     controller: email,
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      hintText: "Email" , hintStyle: TextStyle(color: Colors.green[300]),
+                      labelText: "Email" , labelStyle: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
@@ -86,13 +96,16 @@ class IntroPage extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 Container(
-                  height: 45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
                     controller: password,
                     obscureText: true,
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      hintText: "Password" , hintStyle: TextStyle(color: Colors.green[300]),
+                      labelText: "Password" , labelStyle: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
@@ -100,7 +113,7 @@ class IntroPage extends StatelessWidget {
                 MaterialButton(
                   onPressed: () => Navigator.of(context).pushNamed("login"),
                   child: const Text("Already Have an Account?" ,
-                    style: TextStyle(color: Colors.white70 , fontStyle: FontStyle.italic),
+                    style: TextStyle(color: Colors.black , fontStyle: FontStyle.italic),
                   ),
                 ),
 
@@ -127,7 +140,6 @@ class IntroPage extends StatelessWidget {
                         AwesomeDialog(context: context, title: "Error" ,body: Text("Password is weak"),);
                       } else if (e.code == 'email-already-in-use') {
                         AwesomeDialog(context: context, title: "Error" ,body: Text("The account already exists for that email."),);
-
                       }
                     } catch (e) {
                       print(e);
@@ -135,8 +147,8 @@ class IntroPage extends StatelessWidget {
 
                   },
                   child: Container(
-                    height: 50.0,
-                    width: 200.0,
+                    height: 60.0,
+                    width: 230.0,
                     decoration: BoxDecoration(
                       boxShadow: const [BoxShadow(
                         offset: Offset(0.0 , 20.0),
@@ -150,16 +162,16 @@ class IntroPage extends StatelessWidget {
                       children: <Widget> [
                         Container(
                           height: 70.0,
-                          width: 160.0,
+                          width: 190.0,
                           padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
                           child: Text("Get Started" ,
-                            style: Theme.of(context).textTheme.button!.apply(color: Colors.black),
+                            style: Theme.of(context).textTheme.button!.copyWith(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 16),
                           ),
                           decoration: const BoxDecoration(
                             color: Colors.greenAccent,
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(95.0),
-                              topLeft: Radius.circular(95.0),
+                              bottomLeft: Radius.circular(75.0),
+                              topLeft: Radius.circular(75.0),
                               bottomRight: Radius.circular(200.0),
                             ),
                           ),

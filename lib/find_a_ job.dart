@@ -2,21 +2,32 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
-class Find_a_job extends StatelessWidget {
+class Find_a_job extends StatefulWidget {
    Find_a_job({super.key});
-  final formKey = GlobalKey<FormState>();
-  final job =TextEditingController();
-  final phone =TextEditingController();
-  final email =TextEditingController();
-  final adress =TextEditingController();
-  final experience =TextEditingController();
 
+  @override
+  State<Find_a_job> createState() => _Find_a_jobState();
+}
+
+class _Find_a_jobState extends State<Find_a_job> {
+  final formKey = GlobalKey<FormState>();
+
+  final job =TextEditingController();
+
+  final phone =TextEditingController();
+
+  final email =TextEditingController();
+
+  final adress =TextEditingController();
+
+  final experience =TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.grey,
       ),
       body:
       Center(
@@ -33,9 +44,9 @@ class Find_a_job extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text("Fill the form",style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xffcd6f18),
+                      color: Colors.black,
                     ),
                     ),
                   ],
@@ -44,12 +55,14 @@ class Find_a_job extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 Container(
-                  height: 45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
                       controller: job,
                       keyboardType:TextInputType.text ,
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                          filled: true,
+                          fillColor: Colors.grey[300],
                           labelText:  "Job"
                       ),
                     validator: (value){
@@ -66,12 +79,14 @@ class Find_a_job extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 Container(
-                  height :45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
                     controller: phone,
                     keyboardType:TextInputType.phone ,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       labelText: "Tele.No",
                     ),
                     validator: (value){
@@ -87,12 +102,14 @@ class Find_a_job extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 Container(
-                  height: 45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
                     controller: email,
                     keyboardType:TextInputType.emailAddress ,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       labelText: "Email",
                     ),
                     validator: (email) {
@@ -107,12 +124,14 @@ class Find_a_job extends StatelessWidget {
                 const SizedBox(height: 10,),
 
                 Container(
-                  height: 45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
                     controller: adress,
                     keyboardType:TextInputType.streetAddress ,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       labelText: "Address",
                     ),
                     validator: (value){
@@ -128,12 +147,14 @@ class Find_a_job extends StatelessWidget {
                 const SizedBox(height: 10,),
 
                 Container(
-                  height: 45,
+                  height: 60,
+                  width: 350,
                   child: TextFormField(
                     controller: experience,
                     keyboardType:TextInputType.text ,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                      filled: true,
+                      fillColor: Colors.grey[300],
                       labelText: "Experience",
                     ),
                     validator: (value){
@@ -151,8 +172,8 @@ class Find_a_job extends StatelessWidget {
                 MaterialButton(
                   onPressed: () {},
                   child: Container(
-                    height: 50.0,
-                    width: 200.0,
+                    height: 60.0,
+                    width: 230.0,
                     decoration: BoxDecoration(
                       boxShadow: const [BoxShadow(
                         offset: Offset(0.0 , 20.0),
@@ -166,16 +187,16 @@ class Find_a_job extends StatelessWidget {
                       children: <Widget> [
                         Container(
                           height: 70.0,
-                          width: 160.0,
+                          width: 190.0,
                           padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
                           child: Text("Upload C.V" ,
-                            style: Theme.of(context).textTheme.button!.apply(color: Colors.black),
+                            style: Theme.of(context).textTheme.button!.copyWith(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 16,),
                           ),
                           decoration: const BoxDecoration(
                             color: Colors.greenAccent,
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(95.0),
-                              topLeft: Radius.circular(95.0),
+                              bottomLeft: Radius.circular(75.0),
+                              topLeft: Radius.circular(75.0),
                               bottomRight: Radius.circular(200.0),
                             ),
                           ),
@@ -189,7 +210,16 @@ class Find_a_job extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 MaterialButton(
-                  onPressed: () {
+                  onPressed: () {setState(() {
+                    final isValidForm = formKey.currentState!.validate();
+                    if(isValidForm){
+                      job.clear();
+                      email.clear();
+                      phone.clear();
+                      adress.clear();
+                      experience.clear();
+                    }
+                  });
 
                     Map<String,dynamic> dataBase={
                       "field1 ":job.text,
@@ -199,18 +229,10 @@ class Find_a_job extends StatelessWidget {
                       "field5 ":experience.text,
                     };
                     FirebaseFirestore.instance.collection("Find a job").add(dataBase);
-                    final isValidForm = formKey.currentState!.validate();
-                    if(isValidForm){
-                      job.clear();
-                      email.clear();
-                      phone.clear();
-                      adress.clear();
-                      experience.clear();
-                    };
                   },
                   child: Container(
-                    height: 50.0,
-                    width: 200.0,
+                    height: 60.0,
+                    width: 230.0,
                     decoration: BoxDecoration(
                       boxShadow: const [BoxShadow(
                         offset: Offset(0.0 , 20.0),
@@ -224,17 +246,17 @@ class Find_a_job extends StatelessWidget {
                       children: <Widget> [
                         Container(
                           height: 70.0,
-                          width: 160.0,
+                          width: 190.0,
                           padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
                           child: Text("Apply",
                             style:
-                            Theme.of(context).textTheme.button!.apply(color: Colors.black),
+                            Theme.of(context).textTheme.button!.copyWith(color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),
                           ),
                           decoration: const BoxDecoration(
                             color: Colors.greenAccent,
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(98.0),
-                              topLeft: Radius.circular(98.0),
+                              bottomLeft: Radius.circular(75.0),
+                              topLeft: Radius.circular(75.0),
                               bottomRight: Radius.circular(200.0),
                             ),
                           ),
