@@ -24,6 +24,7 @@ class _TutorialState extends State<Tutorial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           //page view

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_buissness/Shop/screens/home/home_screen.dart';
 
 class TheServices extends StatelessWidget {
   TheServices({Key? key}) : super(key: key);
@@ -199,6 +200,44 @@ class TheServices extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
                           child: Text("Degital Marketing",
                             style: Theme.of(context).textTheme.button!.copyWith(color: Colors.black , fontWeight: FontWeight.bold , fontSize: 16.0),
+                          ),
+                          decoration: const BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(75.0),
+                              topLeft: Radius.circular(75.0),
+                              bottomRight: Radius.circular(200.0),
+                            ),
+                          ),
+                        ),
+                        Image.asset("assets/business.png" , height: 30, width: 30,),
+                      ],
+                    ),
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen())),
+                  child: Container(
+                    height: 60.0,
+                    width: 230.0,
+                    decoration: BoxDecoration(
+                      boxShadow: const [BoxShadow(
+                        offset: Offset(0.0 , 20.0),
+                        blurRadius: 30.0,
+                        color: Colors.black12,
+                      )],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                    ),
+                    child: Row(
+                      children: <Widget> [
+                        Container(
+                          height: 70.0,
+                          width: 190.0,
+                          padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
+                          child: Text("The Store",
+                            style: Theme.of(context).textTheme.button!.copyWith(color: Colors.black , fontWeight: FontWeight.bold , fontSize: 16.0),
+                            maxLines: 1,
                           ),
                           decoration: const BoxDecoration(
                             color: Colors.greenAccent,

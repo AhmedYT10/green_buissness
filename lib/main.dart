@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:green_buissness/Employing%20a%20worker.dart';
 import 'package:green_buissness/Prepare_a_workplace.dart';
 import 'package:green_buissness/Services.dart';
@@ -10,6 +11,7 @@ import 'package:green_buissness/login.dart';
 import 'package:green_buissness/the_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:green_buissness/tutoria.dart';
+import 'package:green_buissness/Shop/constants.dart';
 
 
 Future main() async{
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       theme: ThemeData(
+        textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         primaryColor: Colors.blue,
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
@@ -47,9 +51,28 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Tutorial(),
+      home: const services(),
+      /*Scaffold(
 
-      //  home: const IntroPage(),
+        body: StreamBuilder<User?>(
+    stream: FirebaseAuth.instance.authStateChanges(),
+    builder:(context, snapshot) {
+    {
+    {
+    if (snapshot.hasData) {
+      return services();
+    }
+    else{
+      return LoginPage();
+
+    }
+    }
+
+
+    }
+    }
+  ),
+      ),*/
 
       routes:
       {
