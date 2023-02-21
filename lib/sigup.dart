@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_buissness/Services.dart';
 import 'package:green_buissness/login.dart';
-import 'package:green_buissness/signup%20welcome.dart';
 import 'package:validators/validators.dart';
 
 
@@ -323,14 +322,18 @@ class _SignupPageState extends State<SignupPage> {
                       height: 40.0,
                       minWidth: double.infinity,
                       onPressed: () async {
-                        UserCredential reponse = await signup();
-                        if(reponse != null){
+                        UserCredential response = await signup();
+                        if(response != null){
+                          Map<String,dynamic> dataBase={
+                            "field1 ":name.text,
+                            "field2 ":age.text,
+                            "field3 ":textEditingController.text,
+                          };
+                          await FirebaseFirestore.instance.collection("Users").add(dataBase);
 
                           Navigator.of(context).pushReplacementNamed("Start");
 
                         }
-
-
                       },
 
                       color:
