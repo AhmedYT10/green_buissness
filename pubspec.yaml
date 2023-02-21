@@ -49,6 +49,8 @@ dependencies:
   rive: ^0.9.1
   flutter_svg: ^2.0.1
   like_button: ^2.0.5
+  image_picker: ^0.8.6
+  firebase_storage: ^11.0.13
 
 dev_dependencies:
   flutter_test:

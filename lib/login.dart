@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_buissness/Services.dart';
-import 'package:green_buissness/homepage.dart';
+import 'package:green_buissness/sigup.dart';
 import 'package:validators/validators.dart';
 
 
@@ -198,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   const Text("Don't have an Account"),
                   TextButton(onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => IntroPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
                   }, child: const Text("Signup Now")),
                 ],
               ),

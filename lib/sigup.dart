@@ -8,20 +8,18 @@ import 'package:green_buissness/signup%20welcome.dart';
 import 'package:validators/validators.dart';
 
 
-class IntroPage extends StatefulWidget {
+class SignupPage extends StatefulWidget {
   @override
-  State<IntroPage> createState() => _IntroPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
 
-class _IntroPageState extends State<IntroPage> {
+class _SignupPageState extends State<SignupPage> {
   final GlobalKey<FormState>formKey = GlobalKey<FormState>();
 
-  final name = TextEditingController();
-  final age = TextEditingController();
-
+  TextEditingController name = TextEditingController();
+  TextEditingController age = TextEditingController();
   TextEditingController textEditingController = TextEditingController();
-
  TextEditingController textEditingController2 = TextEditingController();
 
   bool isEmailCorrect = false;
@@ -49,10 +47,41 @@ class _IntroPageState extends State<IntroPage> {
     });
   }
 
+
   @override
   void dispose() {
     textEditingController.dispose();
     super.dispose();
+  }
+  signup() async {
+    var formvalid = formKey.currentState!;
+
+    if (formvalid.validate() && _hasOneNumber && _isPassword8char &&
+        isEmailCorrect == true) {
+      formvalid.save();
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+          email: textEditingController.text,
+          password: textEditingController2.text,
+        );
+        return userCredential;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'email-already-in-use') {
+          AwesomeDialog(
+              context: context,title: "Error",body: Text("The account already exists for that email",style: TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),))..show();
+        }
+      } catch (e) {
+        print(e);
+      }
+    }else{
+      return null;
+
+    }
   }
 
 
@@ -90,6 +119,66 @@ class _IntroPageState extends State<IntroPage> {
                           ),
                           ),
                         ],
+                      ),
+                    ),
+
+                    Container(
+                      height: 60,
+                      width: 350,
+                      child: TextFormField(
+                        controller: name,
+                        keyboardType:TextInputType.name ,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          labelText: "Name",
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 20.0),
+
+                        ),
+                        validator: (value){
+                          if(value!.isNotEmpty){
+                            return null;
+                          }else{
+                            return "Enter your name";
+                          }
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    Container(
+                      height: 60,
+                      width: 350,
+                      child: TextFormField(
+                        controller: age,
+                        keyboardType:TextInputType.text ,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          labelText: "Age",
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 20.0),
+
+                        ),
+                        validator: (value){
+                          if(value!.isNotEmpty){
+                            return null;
+                          }else{
+                            return "Enter your age";
+                          }
+                        },
                       ),
                     ),
 
@@ -234,34 +323,12 @@ class _IntroPageState extends State<IntroPage> {
                       height: 40.0,
                       minWidth: double.infinity,
                       onPressed: () async {
-                        final valid = formKey.currentState!.validate();
-                        if(_hasOneNumber && _isPassword8char && isEmailCorrect == true && valid){
-                          try {
-                            showDialog(context: context,
-                                barrierDismissible: false,
-                                builder: (context) => Center(child: CircularProgressIndicator(),));
-                             await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                              email: textEditingController.text,
-                              password: textEditingController2.text,
-                            );
-                          } on FirebaseAuthException catch (e) {
-                              if (e.code == 'email-already-in-use') {
-                                AwesomeDialog(context:context,
-                                  title: "Error",
-                                  body: Text("Email already in use"),
-                                )..show();
-                              print('The account already exists for that email.');
-                            }
-                          } catch (e) {
-                            print(e);
-                          }
+                        UserCredential reponse = await signup();
+                        if(reponse != null){
 
-
+                          Navigator.of(context).pushReplacementNamed("Start");
 
                         }
-                        Navigator.push(context, MaterialPageRoute(builder:(context) => Welcome(email: textEditingController)));
-                        textEditingController.clear();
-                        textEditingController2.clear();
 
 
                       },
