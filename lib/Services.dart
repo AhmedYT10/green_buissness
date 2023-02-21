@@ -1,14 +1,26 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class services extends StatelessWidget {
+class services extends StatefulWidget {
   const services({Key? key}) : super(key: key);
 
+  @override
+  State<services> createState() => _servicesState();
+}
+
+class _servicesState extends State<services> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.grey,
+        actions: [
+          IconButton(onPressed: ()async{
+            await FirebaseAuth.instance.signOut();
+            Navigator.of(context).pushNamed("login");
+          }, icon: Icon(Icons.exit_to_app))
+        ],
       ),
 
       body: Center(

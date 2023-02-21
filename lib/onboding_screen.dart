@@ -1,5 +1,7 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:green_buissness/Services.dart';
 import 'package:green_buissness/Shop/screens/home/home_screen.dart';
 import 'package:green_buissness/login.dart';
 import 'package:green_buissness/sigup.dart';
@@ -12,6 +14,7 @@ class OnboardingScreen extends StatefulWidget {
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
+bool islogin = false;
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   bool isSignInDialogShown = false;
@@ -25,7 +28,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
     super.initState();
   }
+ signout(){
+    var user = FirebaseAuth.instance.currentUser;
+   if(user == null){
+     Navigator.of(context).pushNamed("login");
+   }else{
+     Navigator.of(context).pushNamed("Start");
+   }
 
+
+ }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,13 +99,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         _btnAnimationColtroller.isActive = true;
                         Future.delayed(
                           const Duration(milliseconds: 900),
-                          () {
-                            setState(() {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
-                            });
+                          ()async {
+                            await signout();
                           },
                         );
                       },

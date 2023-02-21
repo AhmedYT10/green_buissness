@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_buissness/Services.dart';
@@ -48,194 +49,230 @@ class _LoginPageState extends State<LoginPage> {
     content: const Text("Your Login is Completed"),
     action: SnackBarAction(label: "Got it", onPressed: () {}),
   );
+  signin() async {
+    if(isEmailCorrect && _isPassword8char && _hasOneNumber == true) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: textEditingController.text,
+          password: textEditingController2.text,
+        );
 
+        return userCredential;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          AwesomeDialog(context: context,title: "Error",body: Text("No user found for that email",style: TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+          ),
+          )..show();
+        } else if (e.code == 'wrong-password') {
+          AwesomeDialog(context: context,title: "Error",body: Text("Wrong password provided for that user",style: TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+          )
+          )..show();
+
+        }
+      }catch (e) {
+        print(e);
+      }
+
+
+    }else{
+      return null;
+
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
 
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 20),
-          child: Column(
-            children:[
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children:[
 
-              const SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-              Image.asset("assets/logo.png",
-              width:250,
-              height:175),
+                  Image.asset("assets/logo.png",
+                  width:250,
+                  height:175),
 
-              const SizedBox(height: 40),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Sign in ",style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  const SizedBox(height: 40),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("Sign in ",style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
 
 
-                    ),),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),
-
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                controller: textEditingController,
-                showCursor: true,
-                onChanged: (val) {
-                  setState(() {
-                    isEmailCorrect = isEmail(val);
-                  });
-                },
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.email_outlined,
-                    color: Colors.grey.shade500,
+                        ),),
+                      ],
+                    ),
                   ),
-                  suffixIcon: isEmailCorrect == false
-                      ? const Icon(Icons.close_sharp, color: Colors.red)
-                      : const Icon(Icons.done, color: Colors.green),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                    borderSide: isEmailCorrect == false
-                        ? BorderSide(color: Colors.red.shade200, width: 2.0)
-                        : BorderSide(color: Colors.green.shade200, width: 2.0),
-                  ),
-                  labelText: "Email",
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 20.0),
-                ),
-              ),
-              const SizedBox(height: 30.0),
-              TextField(
-                keyboardType: TextInputType.text,
-                controller: textEditingController2,
-                onChanged: (password) => onPasswordChanged(password),
-                obscureText: !_isVisible,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: () {
+                  SizedBox(height: 10),
+
+                  TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: textEditingController,
+                    showCursor: true,
+                    onChanged: (val) {
                       setState(() {
-                        _isVisible = !_isVisible;
+                        isEmailCorrect = isEmail(val);
                       });
                     },
-                    icon: _isVisible
-                        ? const Icon(Icons.visibility, color: Colors.black)
-                        : Icon(Icons.visibility_off, color: Colors.grey.shade600),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
-                  ),
-                  hintText: "Password",
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 20.0),
-                ),
-              ),
-              const SizedBox(height: 30),
-              Row(
-                children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    height: 20.0,
-                    width: 20.0,
-                    decoration: BoxDecoration(
-                      color: _isPassword8char ? Colors.green : Colors.transparent,
-                      border: _isPassword8char
-                          ? Border.all(color: Colors.transparent)
-                          : Border.all(color: Colors.grey.shade400),
-                      borderRadius: BorderRadius.circular(50.0),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                        color: Colors.grey.shade500,
+                      ),
+                      suffixIcon: isEmailCorrect == false
+                          ? const Icon(Icons.close_sharp, color: Colors.red)
+                          : const Icon(Icons.done, color: Colors.green),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                        borderSide: isEmailCorrect == false
+                            ? BorderSide(color: Colors.red.shade200, width: 2.0)
+                            : BorderSide(color: Colors.green.shade200, width: 2.0),
+                      ),
+                      labelText: "Email",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
                     ),
-                    child: _isPassword8char == false
-                        ? const Icon(Icons.close_sharp, color: Colors.white, size: 15.0)
-                        : const Icon(Icons.check, color: Colors.white, size: 15.0),
                   ),
-                  const SizedBox(width: 10),
-                  const Text("Containes at Least 8 Characters"),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    height: 20.0,
-                    width: 20.0,
-                    decoration: BoxDecoration(
-                      color: _hasOneNumber ? Colors.green : Colors.transparent,
-                      border: _hasOneNumber
-                          ? Border.all(color: Colors.transparent)
-                          : Border.all(color: Colors.grey.shade400),
-                      borderRadius: BorderRadius.circular(50.0),
+                  const SizedBox(height: 30.0),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: textEditingController2,
+                    onChanged: (password) => onPasswordChanged(password),
+                    obscureText: !_isVisible,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isVisible = !_isVisible;
+                          });
+                        },
+                        icon: _isVisible
+                            ? const Icon(Icons.visibility, color: Colors.black)
+                            : Icon(Icons.visibility_off, color: Colors.grey.shade600),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(color: Colors.black),
+                      ),
+                      hintText: "Password",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
                     ),
-                    child: _hasOneNumber == false
-                        ? const Icon(Icons.close_sharp, color: Colors.white, size: 15.0)
-                        : const Icon(Icons.check, color: Colors.white, size: 15.0),
                   ),
-                  const SizedBox(width: 10),
-                  const Text("Containes at Least 1 Number"),
-                ],
-              ),
-              const SizedBox(height: 50),
+                  const SizedBox(height: 30),
+                  Row(
+                    children: [
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        height: 20.0,
+                        width: 20.0,
+                        decoration: BoxDecoration(
+                          color: _isPassword8char ? Colors.green : Colors.transparent,
+                          border: _isPassword8char
+                              ? Border.all(color: Colors.transparent)
+                              : Border.all(color: Colors.grey.shade400),
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        child: _isPassword8char == false
+                            ? const Icon(Icons.close_sharp, color: Colors.white, size: 15.0)
+                            : const Icon(Icons.check, color: Colors.white, size: 15.0),
+                      ),
+                      const SizedBox(width: 10),
+                      const Text("Containes at Least 8 Characters"),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        height: 20.0,
+                        width: 20.0,
+                        decoration: BoxDecoration(
+                          color: _hasOneNumber ? Colors.green : Colors.transparent,
+                          border: _hasOneNumber
+                              ? Border.all(color: Colors.transparent)
+                              : Border.all(color: Colors.grey.shade400),
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        child: _hasOneNumber == false
+                            ? const Icon(Icons.close_sharp, color: Colors.white, size: 15.0)
+                            : const Icon(Icons.check, color: Colors.white, size: 15.0),
+                      ),
+                      const SizedBox(width: 10),
+                      const Text("Containes at Least 1 Number"),
+                    ],
+                  ),
+                  const SizedBox(height: 50),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Don't have an Account"),
-                  TextButton(onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
-                  }, child: const Text("Signup Now")),
-                ],
-              ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Don't have an Account"),
+                      TextButton(onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
+                      }, child: const Text("Signup Now")),
+                    ],
+                  ),
 
-              MaterialButton(
-                height: 40.0,
-                minWidth: double.infinity,
-                onPressed: ()async {
-                  if(isEmailCorrect && _isPassword8char && _hasOneNumber == true) {
-                    try {
-                       await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: textEditingController.text,
-                          password: textEditingController2.text,
-                      );
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'user-not-found') {
-                        print('No user found for that email.');
-                      } else if (e.code == 'wrong-password') {
-                        print('Wrong password provided for that user.');
+                  MaterialButton(
+                    height: 40.0,
+                    minWidth: double.infinity,
+                    onPressed: ()async {
+                      {
+                        UserCredential user = await signin();
+                        if (user != null){
+
+                          Navigator.of(context).pushReplacementNamed("Start");
+
+                        }
                       }
-                    }
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => services()));
 
-                  }else{
-                    return null;
-                  }
-                },
-                color:
-                isEmailCorrect && _hasOneNumber && _isPassword8char == false
-                    ? const Color(0xFF707070)
-                    : Colors.green.shade400,
-                child: Text("Create Your Account",
-                    style: TextStyle(color: Colors.white)),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
+
+                    },
+                    color:
+                    isEmailCorrect && _hasOneNumber && _isPassword8char == false
+                        ? const Color(0xFF707070)
+                        : Colors.green.shade400,
+                    child: Text("Create Your Account",
+                        style: TextStyle(color: Colors.white)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
