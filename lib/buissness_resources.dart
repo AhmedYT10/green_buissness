@@ -207,6 +207,10 @@ class _applyState extends State<apply> {
 
                 const SizedBox(height: 20),
 
+                Image.asset("assets/home2.png",height: 175,width: 250),
+
+                const SizedBox(height:20),
+
                 Container(
                   width: 350,
                   height: 60,

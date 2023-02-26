@@ -13,7 +13,7 @@ class _prepareState extends State<prepare> {
 
   final screens = [
     Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(15.0),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment:MainAxisAlignment.start,
@@ -22,14 +22,13 @@ class _prepareState extends State<prepare> {
 
 
           children: [
-            const Center(
-              child: Text("Solar Panels",style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                ),
+            Text("Solar Panels",style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.indigo,
               ),
             ),
-            Image.asset("assets/SolarPanels.jpg",height: 150,
+            Image.asset("assets/solar panel icon.jpg",height: 150,
               width: 250,
             ),
 
@@ -37,8 +36,8 @@ class _prepareState extends State<prepare> {
 
             const Text("First:\n",style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black,
+              fontSize: 18,
+              color: Colors.indigo,
              ),
             ),
 
@@ -46,15 +45,15 @@ class _prepareState extends State<prepare> {
                 " which is a clean source of energy that doesn't pollute the enviroment.\n"
               ,style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.black,
+                fontSize: 16,
+                color: Colors.indigo,
               ),
             ),
 
             const Text("Second:\n",style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black,
+              fontSize: 18,
+              color: Colors.indigo,
              ),
             ),
 
@@ -63,8 +62,8 @@ class _prepareState extends State<prepare> {
                 "3.It is considered light to be put on your roof.\n"
               ,style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.black,
+                fontSize: 16,
+                color: Colors.indigo,
               ),
             ),
           ],
@@ -83,32 +82,36 @@ class _prepareState extends State<prepare> {
           children: [
             const Text("Green Decorations",style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black,
+              fontSize: 20,
+              color: Colors.indigo,
              ),
             ),
+            SizedBox(height: 5,),
             Image.asset("assets/eco_paints.png",height: 150,width: 250),
-
+SizedBox(height: 10,),
             const Text("First:",style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black,
+              fontSize: 18,
+              color: Colors.indigo,
              ),
             ),
+            SizedBox(height: 10,),
 
             const Text("Eco-friendly paints :\n are innovative products that are specially designed to have few if not zero levels of VOCs,So it doesn't pollute the enviroment ",style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black,
+              fontSize: 16,
+              color: Colors.indigo,
              ),
             ),
+            SizedBox(height: 10,),
 
             const Text("Second:",style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black,
+              fontSize: 18,
+              color: Colors.indigo,
              ),
             ),
+            SizedBox(height: 10,),
 
             const Text("Benfits:\n"
                 "1.Being better for people and the environment.\n"
@@ -119,8 +122,8 @@ class _prepareState extends State<prepare> {
                 "6.Low VOC paints.\n"
                 "7.Zero VOC paints.\n",style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black,
+              fontSize: 16,
+              color: Colors.indigo,
              ),
             ),
           ],
@@ -138,19 +141,21 @@ class _prepareState extends State<prepare> {
             children: [
               const Text("Green Materials\n",style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.black,
+                fontSize: 20,
+                color: Colors.indigo,
                ),
               ),
+              SizedBox(height: 10,),
 
               Image.asset("assets/Green_house.png" , height: 150 , width: 250),
 
               const Text("First:\n",style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.black,
+                fontSize: 18,
+                color: Colors.indigo,
                ),
               ),
+              SizedBox(height: 10),
 
               const Text("Green materials are materials which are used in building green houses.\n"
                   "Those materials are :"
@@ -164,17 +169,19 @@ class _prepareState extends State<prepare> {
                   "8.iron\n"
                   "Note : Not all materials are used in making one house just a few \n",style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.black,
+                fontSize: 16,
+                color: Colors.indigo,
                ),
               ),
+              SizedBox(height: 10,),
 
               const Text("Second:\n",style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.black,
+                fontSize: 18,
+                color: Colors.indigo,
                ),
               ),
+              SizedBox(height: 10,),
 
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,8 +193,8 @@ class _prepareState extends State<prepare> {
                       "4.Lower carbon footprint.\n"
                       "5.Higher property value.\n",style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.black,
+                    fontSize: 16,
+                    color: Colors.indigo,
                    ),
                   ),
                 ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_buissness/Shop/screens/home/home_screen.dart';
+import 'package:green_buissness/Store/screens/home/home_screen.dart';
 
 class TheServices extends StatelessWidget {
   TheServices({Key? key}) : super(key: key);
@@ -215,6 +215,9 @@ class TheServices extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                SizedBox(height: 20),
+
                 MaterialButton(
                   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen())),
                   child: Container(

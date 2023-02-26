@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_buissness/Services.dart';
+import 'package:green_buissness/resetpassword.dart';
 import 'package:green_buissness/sigup.dart';
 import 'package:validators/validators.dart';
 
@@ -107,26 +108,27 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 10),
 
                   Image.asset("assets/logo.png",
-                  width:250,
-                  height:175),
+                  width:400,
+                  height:250),
 
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 20),
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text("Sign in ",style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
-
-
-                        ),),
+                         ),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 10),
+
+                  const SizedBox(height: 10),
 
                   TextField(
                     keyboardType: TextInputType.emailAddress,
@@ -160,7 +162,9 @@ class _LoginPageState extends State<LoginPage> {
                           horizontal: 20.0, vertical: 20.0),
                     ),
                   ),
+
                   const SizedBox(height: 30.0),
+
                   TextField(
                     keyboardType: TextInputType.text,
                     controller: textEditingController2,
@@ -185,90 +189,87 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: const BorderSide(color: Colors.black),
                       ),
-                      hintText: "Password",
+                      labelText: "Password",
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 20.0),
                     ),
                   ),
-                  const SizedBox(height: 30),
-                  Row(
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
-                        height: 20.0,
-                        width: 20.0,
-                        decoration: BoxDecoration(
-                          color: _isPassword8char ? Colors.green : Colors.transparent,
-                          border: _isPassword8char
-                              ? Border.all(color: Colors.transparent)
-                              : Border.all(color: Colors.grey.shade400),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        child: _isPassword8char == false
-                            ? const Icon(Icons.close_sharp, color: Colors.white, size: 15.0)
-                            : const Icon(Icons.check, color: Colors.white, size: 15.0),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text("Containes at Least 8 Characters"),
-                    ],
-                  ),
+
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
-                        height: 20.0,
-                        width: 20.0,
-                        decoration: BoxDecoration(
-                          color: _hasOneNumber ? Colors.green : Colors.transparent,
-                          border: _hasOneNumber
-                              ? Border.all(color: Colors.transparent)
-                              : Border.all(color: Colors.grey.shade400),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        child: _hasOneNumber == false
-                            ? const Icon(Icons.close_sharp, color: Colors.white, size: 15.0)
-                            : const Icon(Icons.check, color: Colors.white, size: 15.0),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text("Containes at Least 1 Number"),
-                    ],
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        TextButton(onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Resetpassword()));
+                        }, child: const Text("Forgot your password?")),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 50),
+
+                  const SizedBox(height: 15.0),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't have an Account"),
+                      const Text("Don't have an Account?"),
                       TextButton(onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
-                      }, child: const Text("Signup Now")),
+                      }, child: const Text("Join To Us Now")),
                     ],
                   ),
 
+                  const SizedBox(height: 10.0),
+
                   MaterialButton(
-                    height: 40.0,
-                    minWidth: double.infinity,
-                    onPressed: ()async {
+                    onPressed: () async{
                       {
                         UserCredential user = await signin();
                         if (user != null){
-
-                          Navigator.of(context).pushReplacementNamed("Start");
-
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => services()));
                         }
                       }
-
-
                     },
-                    color:
-                    isEmailCorrect && _hasOneNumber && _isPassword8char == false
-                        ? const Color(0xFF707070)
-                        : Colors.green.shade400,
-                    child: Text("Create Your Account",
-                        style: TextStyle(color: Colors.white)),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
+                    child: Container(
+                      height: 60.0,
+                      width: 230.0,
+                      decoration: BoxDecoration(
+                        boxShadow: const [BoxShadow(
+                          offset: Offset(0.0 , 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(22.0),
+                      ),
+                      child: Row(
+                        children: <Widget> [
+                          Container(
+                            height: 70.0,
+                            width: 190.0,
+                            padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text("Welcome Back ^_^",
+                                style: Theme.of(context).textTheme.button!.copyWith(color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            decoration: const BoxDecoration(
+                              color: Colors.greenAccent,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(75.0),
+                                topLeft: Radius.circular(75.0),
+                                bottomRight: Radius.circular(200.0),
+                              ),
+                            ),
+                          ),
+                          Image.asset("assets/home.png" , height: 30, width: 30,),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),

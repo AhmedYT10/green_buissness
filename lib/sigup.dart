@@ -2,7 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:green_buissness/Services.dart';
 import 'package:green_buissness/login.dart';
 import 'package:validators/validators.dart';
 
@@ -102,9 +101,9 @@ class _SignupPageState extends State<SignupPage> {
 
                     const SizedBox(height: 10),
 
-                    Image.asset("assets/logo.png" , width: 250 , height: 175),
+                    Image.asset("assets/logo.png" , width: 400 , height: 250),
 
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
 
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -121,6 +120,8 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
 
+                    const SizedBox(height: 15.0),
+
                     Container(
                       height: 60,
                       width: 350,
@@ -128,8 +129,12 @@ class _SignupPageState extends State<SignupPage> {
                         controller: name,
                         keyboardType:TextInputType.name ,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: Colors.grey.shade500,
+                          ),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                            borderRadius: BorderRadius.circular(25.0),
                             borderSide: const BorderSide(color: Colors.black),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -138,7 +143,6 @@ class _SignupPageState extends State<SignupPage> {
                           labelText: "Name",
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 20.0),
-
                         ),
                         validator: (value){
                           if(value!.isNotEmpty){
@@ -150,26 +154,29 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
 
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20.0),
 
                     Container(
-                      height: 60,
-                      width: 350,
+                      height: 60.0,
+                      width: 350.0,
                       child: TextFormField(
                         controller: age,
                         keyboardType:TextInputType.text ,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.calendar_month,
+                            color: Colors.grey.shade500,
+                          ),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                            borderRadius: BorderRadius.circular(25.0),
                             borderSide: const BorderSide(color: Colors.black),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0),
+                            borderRadius: BorderRadius.circular(115.0),
                           ),
                           labelText: "Age",
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 20.0),
-
                         ),
                         validator: (value){
                           if(value!.isNotEmpty){
@@ -181,7 +188,7 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
 
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20.0),
 
                     Container(
                       height: 60,
@@ -219,7 +226,9 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                       ),
                     ),
+
                     const SizedBox(height: 20.0),
+
                     Container(
                       height: 60,
                       width: 350,
@@ -253,9 +262,11 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+
+                    const SizedBox(height: 20.0),
+
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(left: 15.0),
                       child: Row(
                         children: [
                           AnimatedContainer(
@@ -278,9 +289,11 @@ class _SignupPageState extends State<SignupPage> {
                         ],
                       ),
                     ),
+
                     const SizedBox(height: 10),
+
                     Padding(
-                      padding: const EdgeInsets.only(left: 5.0),
+                      padding: const EdgeInsets.only(left: 15.0),
                       child: Row(
                         children: [
                           AnimatedContainer(
@@ -298,13 +311,15 @@ class _SignupPageState extends State<SignupPage> {
                                 ? const Icon(Icons.close_sharp, color: Colors.white, size: 15.0)
                                 : const Icon(Icons.check, color: Colors.white, size: 15.0),
                           ),
+
                           const SizedBox(width: 10),
+
                           const Text("Containes at Least 1 Number"),
                         ],
                       ),
                     ),
 
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 25.0),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -319,8 +334,6 @@ class _SignupPageState extends State<SignupPage> {
                     ),
 
                     MaterialButton(
-                      height: 40.0,
-                      minWidth: double.infinity,
                       onPressed: () async {
                         UserCredential response = await signup();
                         if(response != null){
@@ -330,20 +343,46 @@ class _SignupPageState extends State<SignupPage> {
                             "field3 ":textEditingController.text,
                           };
                           await FirebaseFirestore.instance.collection("Users").add(dataBase);
-
                           Navigator.of(context).pushReplacementNamed("Start");
-
                         }
                       },
-
-                      color:
-                      isEmailCorrect && _hasOneNumber && _isPassword8char == false
-                          ? const Color(0xFF707070)
-                          : Colors.green.shade400,
-                      child: Text("Register",
-                          style: TextStyle(color: Colors.white)),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Container(
+                        height: 60.0,
+                        width: 230.0,
+                        decoration: BoxDecoration(
+                          boxShadow: const [BoxShadow(
+                            offset: Offset(0.0 , 20.0),
+                            blurRadius: 30.0,
+                            color: Colors.black12,
+                          )],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(22.0),
+                        ),
+                        child: Row(
+                          children: <Widget> [
+                            Container(
+                              height: 70.0,
+                              width: 190.0,
+                              padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Text("Join To Us Now ^_^",
+                                  style: Theme.of(context).textTheme.button!.copyWith(color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              decoration: const BoxDecoration(
+                                color: Colors.greenAccent,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(75.0),
+                                  topLeft: Radius.circular(75.0),
+                                  bottomRight: Radius.circular(200.0),
+                                ),
+                              ),
+                            ),
+                            Image.asset("assets/home.png" , height: 30, width: 30,),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -355,5 +394,3 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 }
-
-

@@ -1,10 +1,6 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:green_buissness/Services.dart';
-import 'package:green_buissness/Shop/screens/home/home_screen.dart';
-import 'package:green_buissness/login.dart';
-import 'package:green_buissness/sigup.dart';
 import 'package:rive/rive.dart';
 import 'animated_btn.dart';
 
@@ -35,9 +31,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
    }else{
      Navigator.of(context).pushNamed("Start");
    }
-
-
  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     SizedBox(
                       width: 260,
                       child: Column(
-                        children: const [
+                        children: [
                           Text(
                             "Learn & Get Money",
                             style: TextStyle(
@@ -86,8 +81,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                           ),
                           SizedBox(height: 16),
-                          Text(
-                            "Green Business IS The Best Way To Apply Your Idea and Get Money in A Short Time ,But You Have To Be Clever To Get alot of Money.",
+                          Container(
+                            width: 300,
+                            child: Text(
+                              "Green Business IS The Best Way To Apply Your Idea and Get Money in A Short Time ,But You Have To Be Clever To Get alot of Money.",
+                              style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ],
                       ),
@@ -105,12 +104,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         );
                       },
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24),
-                      child: Text(
-                        "You Can Get A Partener and Start Working With Him and You Can Do Your Project With Him If You have Money , Idea or Place You Should Try The App To Get Money.",
-                      ),
-                    ),
+                    SizedBox(height: 150,)
                   ],
                 ),
               ),
