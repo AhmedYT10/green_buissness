@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:green_buissness/login.dart';
+import 'package:green_business/login.dart';
 import 'package:validators/validators.dart';
 
 
@@ -91,17 +91,15 @@ class _SignupPageState extends State<SignupPage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 20),
           child: Form(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
             key: formKey,
             child: SingleChildScrollView(
               scrollDirection:Axis.vertical,
               child: Container(
                 child: Column(
                   children:[
-
                     const SizedBox(height: 10),
 
-                    Image.asset("assets/logo.png" , width: 400 , height: 250),
+                    Image.asset("Assets/Images/appLogo.jpeg" , width: 400 , height: 250),
 
                     const SizedBox(height: 20),
 
@@ -224,6 +222,13 @@ class _SignupPageState extends State<SignupPage> {
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 20.0),
                         ),
+                          validator: (value) {
+                    if (isEmailCorrect == false) {
+                    return "Enter a valid email";
+                    } else {
+                    return null;
+                    }
+                    }
                       ),
                     ),
 
@@ -260,6 +265,13 @@ class _SignupPageState extends State<SignupPage> {
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 20.0),
                         ),
+                          validator: (value) {
+                            if (_isPassword8char == false || _hasOneNumber == false) {
+                              return "Enter a valid password";
+                            } else {
+                              return null;
+                            }
+                          }
                       ),
                     ),
 
@@ -285,7 +297,7 @@ class _SignupPageState extends State<SignupPage> {
                                 : const Icon(Icons.check, color: Colors.white, size: 15.0),
                           ),
                           const SizedBox(width: 10),
-                          const Text("Containes at Least 8 Characters"),
+                          const Text("Contains at Least 8 Characters"),
                         ],
                       ),
                     ),
@@ -314,7 +326,7 @@ class _SignupPageState extends State<SignupPage> {
 
                           const SizedBox(width: 10),
 
-                          const Text("Containes at Least 1 Number"),
+                          const Text("Contains at Least 1 Number"),
                         ],
                       ),
                     ),
@@ -379,7 +391,7 @@ class _SignupPageState extends State<SignupPage> {
                                 ),
                               ),
                             ),
-                            Image.asset("assets/home.png" , height: 30, width: 30,),
+                            Image.asset("Assets/Images/home.png" , height: 30, width: 30,),
                           ],
                         ),
                       ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:green_buissness/Store/constants.dart';
-import 'package:green_buissness/Store/models/Product.dart';
-import 'package:green_buissness/Store/screens/details/details_screen.dart';
-import 'categorries.dart';
+import 'package:green_business/Store/constants.dart';
+import 'package:green_business/Store/models/Product.dart';
+import 'package:green_business/Store/screens/details/details_screen.dart';
 import 'item_card.dart';
 
 class Body extends StatelessWidget {
@@ -13,17 +12,9 @@ class Body extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-          child: Text(
-            "Store",
-            style: Theme.of(context)
-                .textTheme
-                .headline5!
-                .copyWith(fontWeight: FontWeight.bold),
-          ),
-        ),
-        const Categories(),
+
+        const SizedBox(height: 15),
+
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),

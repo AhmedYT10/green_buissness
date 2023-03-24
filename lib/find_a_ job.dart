@@ -32,7 +32,6 @@ class _Find_a_jobState extends State<Find_a_job> {
         padding: const EdgeInsets.all(15.0),
         child:
         Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
           key:formKey,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -51,136 +50,35 @@ class _Find_a_jobState extends State<Find_a_job> {
                     ],
                   ),
                   SizedBox(height: 10),
-                  Container(
-                    height: 60,
-                    width: 350,
-                    child: TextFormField(
-                      controller: name,
-                      keyboardType:TextInputType.name ,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: const BorderSide(color: Colors.black),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        labelText: "Name",
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 20.0),
-
+                  TextFormField(
+                    controller: name,
+                    keyboardType:TextInputType.name ,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(color: Colors.black),
                       ),
-                      validator: (value){
-                        if(value!.isNotEmpty){
-                          return null;
-                        }else{
-                          return "Enter your name";
-                        }
-                      },
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      labelText: "Name",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
+
                     ),
+                    validator: (value){
+                      if(value!.isNotEmpty){
+                        return null;
+                      }else{
+                        return "Enter your name";
+                      }
+                    },
                   ),
 
                   const SizedBox(height: 10),
 
-                  Container(
-                    height: 60,
-                    width: 350,
-                    child: TextFormField(
-                        controller: job,
-                        keyboardType:TextInputType.text ,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: const BorderSide(color: Colors.black),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          labelText: "Job",
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 20.0),
-
-                        ),
-                      validator: (value){
-                        if(value!.isNotEmpty){
-                          return null;
-                        }else{
-                          return "Enter your job";
-                        }
-                      },
-                      ),
-                    ),
-
-
-                  const SizedBox(height: 10),
-
-                  Container(
-                    height: 60,
-                    width: 350,
-                    child: TextFormField(
-                      controller: phone,
-                      keyboardType:TextInputType.phone ,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: const BorderSide(color: Colors.black),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        labelText: "Tele.No",
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 20.0),
-
-                      ),
-                      validator: (value){
-                        if(value!.isNotEmpty){
-                          return null;
-                        }else{
-                          return "Enter a phone number";
-                        }
-                      },
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  Container(
-                    height: 60,
-                    width: 350,
-                    child: TextFormField(
-                      controller: adress,
-                      keyboardType:TextInputType.streetAddress ,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: const BorderSide(color: Colors.black),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        labelText: "Enter your address",
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 20.0),
-
-                      ),
-                      validator: (value){
-                        if(value!.isNotEmpty){
-                          return null;
-                        }else{
-                          return "Enter your address";
-                        }
-                      },
-                    ),
-                  ),
-
-                  const SizedBox(height: 20,),
-
-                  Container(
-                    height: 60,
-                    width: 350,
-                    child: TextFormField(
-                      controller: experience,
+                  TextFormField(
+                      controller: job,
                       keyboardType:TextInputType.text ,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -190,19 +88,100 @@ class _Find_a_jobState extends State<Find_a_job> {
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         ),
-                        labelText: "Experience",
+                        labelText: "Job",
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 20.0),
 
                       ),
-                      validator: (value){
-                        if(value!.isNotEmpty){
-                          return null;
-                        }else{
-                          return "Enter your experience";
-                        }
-                      },
+                    validator: (value){
+                      if(value!.isNotEmpty){
+                        return null;
+                      }else{
+                        return "Enter your job";
+                      }
+                    },
                     ),
+
+
+                  const SizedBox(height: 10),
+
+                  TextFormField(
+                    controller: phone,
+                    keyboardType:TextInputType.phone ,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      labelText: "Tele.No",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
+
+                    ),
+                    validator: (value){
+                      if(value!.isNotEmpty){
+                        return null;
+                      }else{
+                        return "Enter a phone number";
+                      }
+                    },
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  TextFormField(
+                    controller: adress,
+                    keyboardType:TextInputType.streetAddress ,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      labelText: "Enter your address",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
+
+                    ),
+                    validator: (value){
+                      if(value!.isNotEmpty){
+                        return null;
+                      }else{
+                        return "Enter your address";
+                      }
+                    },
+                  ),
+
+                  const SizedBox(height: 20,),
+
+                  TextFormField(
+                    controller: experience,
+                    keyboardType:TextInputType.text ,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      labelText: "Experience",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
+
+                    ),
+                    validator: (value){
+                      if(value!.isNotEmpty){
+                        return null;
+                      }else{
+                        return "Enter your experience";
+                      }
+                    },
                   ),
 
                   const SizedBox(height: 30),
@@ -266,7 +245,7 @@ class _Find_a_jobState extends State<Find_a_job> {
                               ),
                             ),
                           ),
-                          Image.asset("assets/list.png" , height: 30 , width: 30),
+                          Image.asset("Assets/Images/list.png" , height: 30 , width: 30),
                         ],
                       ),
                     ),

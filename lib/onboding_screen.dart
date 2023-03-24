@@ -6,14 +6,22 @@ import 'animated_btn.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
-
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
-bool islogin = false;
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  signout() async {
+    var user = FirebaseAuth.instance.currentUser;
+    if(user == null){
+      Navigator.of(context).pushNamed("login");
+    }else{
+      Navigator.of(context).pushNamed("Start");
+    }
+  }
+
   bool isSignInDialogShown = false;
+
   late RiveAnimationController _btnAnimationColtroller;
 
   @override
@@ -24,14 +32,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
     super.initState();
   }
- signout(){
-    var user = FirebaseAuth.instance.currentUser;
-   if(user == null){
-     Navigator.of(context).pushNamed("login");
-   }else{
-     Navigator.of(context).pushNamed("Start");
-   }
- }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +45,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             width: MediaQuery.of(context).size.width * 1.7,
             bottom: 200,
             left: 100,
-            child: Image.asset("assets/Backgrounds/Spline.png"),
+            child: Image.asset("Assets/Spline.png"),
           ),
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 20, sigmaY: 10),
             ),
           ),
-          const RiveAnimation.asset("assets/RiveAssets/shapes.riv"),
+          const RiveAnimation.asset("Assets/shapes.riv"),
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
@@ -72,7 +75,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       width: 260,
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             "Learn & Get Money",
                             style: TextStyle(
                               fontSize: 60,
@@ -80,10 +83,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               height: 1.2,
                             ),
                           ),
-                          SizedBox(height: 16),
+
+                          const SizedBox(height: 30),
+
                           Container(
                             width: 300,
-                            child: Text(
+                            child: const Text(
                               "Green Business IS The Best Way To Apply Your Idea and Get Money in A Short Time ,But You Have To Be Clever To Get alot of Money.",
                               style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                             ),
@@ -91,20 +96,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ],
                       ),
                     ),
+
                     const Spacer(flex: 2),
+
                     AnimatedBtn(
                       btnAnimationColtroller: _btnAnimationColtroller,
                       press: () {
                         _btnAnimationColtroller.isActive = true;
                         Future.delayed(
                           const Duration(milliseconds: 900),
-                          ()async {
+                              () async {
                             await signout();
                           },
                         );
                       },
                     ),
-                    SizedBox(height: 150,)
+                    const SizedBox(height: 70),
                   ],
                 ),
               ),

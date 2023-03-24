@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:validators/validators.dart';
 import 'package:flutter/material.dart';
 
-
 class Resetpassword extends StatefulWidget {
   @override
   State<Resetpassword> createState() => _ResetpasswordState();
@@ -11,6 +10,7 @@ class Resetpassword extends StatefulWidget {
 class _ResetpasswordState extends State<Resetpassword> {
   TextEditingController textEditingController = TextEditingController();
   bool isEmailCorrect = false;
+  final GlobalKey<FormState>formKey = GlobalKey<FormState>();
   @override
   void dispose() {
     textEditingController.dispose();
@@ -39,40 +39,40 @@ class _ResetpasswordState extends State<Resetpassword> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+          child: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
 
-                  const SizedBox(height: 10),
+                    const SizedBox(height: 10),
 
-                  Image.asset("assets/logo.png", width: 250, height: 175),
+                    Image.asset("Assets/Images/appLogo.jpeg", width: 250, height: 175),
 
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Text("Sign up ", style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Text("Reset Password", style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(height: 10),
-                  Container(
-                    height: 60,
-                    width: 350,
-                    child: TextFormField(
+                    const SizedBox(height: 10),
+
+                    TextFormField(
                       controller: textEditingController,
                       showCursor: true,
                       keyboardType: TextInputType.emailAddress,
@@ -103,37 +103,65 @@ class _ResetpasswordState extends State<Resetpassword> {
                               color: Colors.green.shade200, width: 2.0),
                         ),
                         labelText: "Email",
-                        labelStyle: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 20.0),
                       ),
+                        validator: (value) {
+                          if (isEmailCorrect == false) {
+                            return "Enter a valid email";
+                          } else {
+                            return null;
+                          }
+                        }
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  MaterialButton(
-                    height: 40.0,
-                    minWidth: double.infinity,
-                    onPressed: () async {
-                      await resetpassword();
-                      Navigator.of(context).pushReplacementNamed("login");
 
-                    },
+                    const SizedBox(height: 35),
 
-                    color:
-                    isEmailCorrect == false
-                        ? const Color(0xFF707070)
-                        : Colors.green.shade400,
-                    child: Text("Reset password",
-                        style: TextStyle(color: Colors.white)),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                  ),
-                ],
+                    MaterialButton(
+                      onPressed: () async {
+                        final isValidForm = formKey.currentState!.validate();
+                        if(isValidForm) {
+                          await resetpassword();
+                        }
+                      },
+                      child: Container(
+                        height: 60.0,
+                        width: 230.0,
+                        decoration: BoxDecoration(
+                          boxShadow: const [BoxShadow(
+                            offset: Offset(0.0 , 20.0),
+                            blurRadius: 30.0,
+                            color: Colors.black12,
+                          )],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(22.0),
+                        ),
+                        child: Row(
+                          children: <Widget> [
+                            Container(
+                              height: 70.0,
+                              width: 190.0,
+                              padding: const EdgeInsets.symmetric(vertical: 12.0 , horizontal: 12.0),
+                              child: Text("Reset Password",
+                                style:
+                                Theme.of(context).textTheme.button!.copyWith(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 16),
+                              ),
+                              decoration: const BoxDecoration(
+                                color: Colors.greenAccent,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(75.0),
+                                  topLeft: Radius.circular(75.0),
+                                  bottomRight: Radius.circular(200.0),
+                                ),
+                              ),
+                            ),
+                            Image.asset("Assets/Images/password.png" , height: 30 , width: 30),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -142,5 +170,3 @@ class _ResetpasswordState extends State<Resetpassword> {
     );
   }
 }
-
-

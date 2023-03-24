@@ -13,14 +13,11 @@ class _prepareState extends State<prepare> {
 
   final screens = [
     Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(35.0),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment:MainAxisAlignment.start,
           crossAxisAlignment:CrossAxisAlignment.center,
-
-
-
           children: [
             Text("Solar Panels",style: TextStyle(
               fontSize: 20,
@@ -28,7 +25,7 @@ class _prepareState extends State<prepare> {
               color: Colors.indigo,
               ),
             ),
-            Image.asset("assets/solar panel icon.jpg",height: 150,
+            Image.asset("Assets/Images/solar panel icon.jpg",height: 150,
               width: 250,
             ),
 
@@ -71,7 +68,7 @@ class _prepareState extends State<prepare> {
       ),
     ),
     Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(35.0),
       child: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -87,8 +84,8 @@ class _prepareState extends State<prepare> {
              ),
             ),
             SizedBox(height: 5,),
-            Image.asset("assets/eco_paints.png",height: 150,width: 250),
-SizedBox(height: 10,),
+            Image.asset("Assets/Images/eco_paints.png",height: 150,width: 250),
+            SizedBox(height: 10,),
             const Text("First:",style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -131,7 +128,7 @@ SizedBox(height: 10,),
       ),
     ),
     Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(35.0),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: SafeArea(
@@ -147,7 +144,7 @@ SizedBox(height: 10,),
               ),
               SizedBox(height: 10,),
 
-              Image.asset("assets/Green_house.png" , height: 150 , width: 250),
+              Image.asset("Assets/Images/Green_house.png" , height: 150 , width: 250),
 
               const Text("First:\n",style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -226,7 +223,6 @@ SizedBox(height: 10,),
             color: Colors.white,
             activeColor: Colors.white,
             tabBackgroundColor: Colors.grey.shade800,
-            tabBackgroundGradient: const LinearGradient(colors: [Colors.redAccent , Colors.blueAccent]),
             padding: const EdgeInsets.all(16),
             onTabChange: (index)=>setState ( ()=> currentindex= index),
             tabs: const [

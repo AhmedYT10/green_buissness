@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_buissness/Store/models/Product.dart';
+import 'package:green_business/Store/models/Product.dart';
 import '../../../constants.dart';
 
 class ItemCard extends StatelessWidget {

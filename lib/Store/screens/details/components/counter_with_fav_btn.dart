@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:like_button/like_button.dart';
-import 'cart_counter.dart';
 
 // ignore: must_be_immutable
 class CounterWithFavBtn extends StatefulWidget {
@@ -20,9 +18,6 @@ class _CounterWithFavBtnState extends State<CounterWithFavBtn> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        
-        const CartCounter(),
-
         LikeButton(
           size: 40.0,
           likeCount: numOfLikes,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:green_buissness/Store/constants.dart';
-import 'package:green_buissness/Store/models/Product.dart';
+import 'package:green_business/Store/constants.dart';
+import 'package:green_business/Store/models/Product.dart';
 import 'add_to_cart.dart';
 import 'color_and_size.dart';
 import 'counter_with_fav_btn.dart';

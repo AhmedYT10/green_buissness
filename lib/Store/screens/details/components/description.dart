@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_buissness/Store/models/Product.dart';
+import 'package:green_business/Store/models/Product.dart';
 import '../../../constants.dart';
 
 class Description extends StatelessWidget {
@@ -14,9 +14,14 @@ class Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-      child: Text(
-        product.description,
-        style: const TextStyle(height: 1.5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            product.description,
+            style: const TextStyle(height: 1.5),
+          ),
+        ],
       ),
     );
   }

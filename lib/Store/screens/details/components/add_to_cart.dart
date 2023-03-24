@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:green_buissness/Store/models/Product.dart';
+import 'package:green_business/Store/models/Product.dart';
+import 'package:green_business/form_of_buying.dart';
 import '../../../constants.dart';
+import 'package:green_business/Store/screens/details/components/add_to_cart.dart';
 
 class AddToCart extends StatelessWidget {
   const AddToCart({
@@ -23,7 +25,9 @@ class AddToCart extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18)),
                 color: product.color,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Confirmation(value: product.title,price: product.price,)));
+                },
                 child: Text(
                   "Buy  Now".toUpperCase(),
                   style: const TextStyle(

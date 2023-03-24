@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:green_buissness/Store/models/Product.dart';
-import 'package:green_buissness/Store/screens/details/components/body.dart';
+import 'package:green_business/Store/models/Product.dart';
+import 'package:green_business/Store/screens/details/components/body.dart';
+import 'package:green_business/Store/screens/home/home_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Product product;
@@ -21,11 +21,8 @@ class DetailsScreen extends StatelessWidget {
       backgroundColor: product.color,
       elevation: 0,
       leading: IconButton(
-        icon: SvgPicture.asset(
-          'assets/icons/back.svg',
-          color: Colors.white,
-        ),
-        onPressed: () => Navigator.pop(context),
+        icon: Icon(Icons.arrow_back , color: Colors.white),
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreenStore()))
       ),
     );
   }
